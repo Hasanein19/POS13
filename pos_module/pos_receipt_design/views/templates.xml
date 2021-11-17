@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : <https://store.webkul.com/license.html/> -->
+
+<odoo>
+    <data>
+        <template id="assets" inherit_id="point_of_sale.assets">
+            <xpath expr="." position="inside">
+            	<link rel="stylesheet" href="/pos_receipt_design/static/src/css/custom.css"/>
+                <script type="text/javascript" src="/pos_receipt_design/static/src/js/models.js"></script>
+            </xpath>
+        </template>
+        <!-- <template id="assets_backend" name="hr assets" inherit_id="point_of_sale.assets_backend">
+        	<xpath expr="//script[@src='/point_of_sale/static/src/js/printers.js']" position="replace">
+        		<script type="text/javascript" src="/pos_receipt_design/static/src/js/printers.js"></script>
+        	</xpath>
+        </template> -->
+    </data>
+</odoo>

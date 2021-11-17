@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+pos_product_attribute_id,pos_product_attribute,model_pos_product_attribute,,1,1,1,1
+pos_product_attribute_value_id,pos_product_attribute_value,model_pos_product_attribute_value,,1,1,1,1
+pos_product_attribute_line_id,pos_product_attribute_line,model_pos_product_attribute_line,,1,1,1,1
+

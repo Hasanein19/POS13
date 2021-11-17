@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="pos_config_view_form_pos_sale" model="ir.ui.view"> 
+          <field name="name">pos.config.form.pos.sale</field>
+          <field name="model">pos.config</field>
+          <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+          <field name="arch" type="xml">
+              <div id="category_reference" position="after">
+                  <div class="col-xs-12 col-md-6 o_setting_box">
+                      <div class="o_setting_left_pane">
+                          <field name="allow_product_varients"/>
+                      </div>
+                      <div class="o_setting_right_pane">
+                          <label for="allow_product_varients"/>
+                      </div>
+                  </div>
+              </div>
+          </field>
+      </record>
+        <record model="ir.ui.view" id="product_normal_form_view">
+            <field name="name">product.product.view.form.easy</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('oe_title')]//div" position="inside">
+                    <div>
+                        <field name="has_variant"/>
+                        <label for="has_variant"/>
+                    </div>
+                </xpath>
+                <notebook position="inside">
+                    <page name="product_variant" string="Product Varient" attrs="{'invisible':[('has_variant','==', False)]}">
+                        <field name="pos_product_varient_id">
+                            <tree editable="bottom">
+                                <field name="value_ids"/>
+                                <field name="default_selected"/>
+                                <field name="price"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+        <record id="pos_product_attribute_value_view_tree" model="ir.ui.view">
+            <field name="name">pos.product.attribute.value.view.tree</field>
+            <field name="model">pos.product.attribute.value</field>
+            <field name="arch" type="xml">
+                <tree string="Attributes" editable="top">
+                    <field name="sequence" widget="handle"/>
+                    <field name="attribute_id"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="pos_product_attribute_value_action" model="ir.actions.act_window">
+            <field name="name">Variant Values</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pos.product.attribute.value</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="pos_product_attribute_value_view_tree"/>
+        </record>
+
+        <record id="pos_attribute_tree_view" model="ir.ui.view">
+            <field name="name">pos.product.attribute.tree</field>
+            <field name="model">pos.product.attribute</field>
+            <field name="arch" type="xml">
+                <tree string="Variant Values" editable="top">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="pos_product_attribute_view_form" model="ir.ui.view">
+            <field name="name">pos.product.attribute.form</field>
+            <field name="model">pos.product.attribute</field>
+            <field name="arch" type="xml">
+                <form string="Product Attribute">
+                    <group>
+                        <group name="main_fields">
+                            <label for="name" string="Attribute Name"/>
+                            <field name="name" nolabel="1"/>
+                        </group>
+                    </group>
+                    <group name="values_ids">
+                        <label for="value_ids" string="Attribute Values"/>
+                        <field name="value_ids" widget="one2many_list" nolabel="1">
+                            <tree string="Values" editable="bottom">
+                                <field name="name"/>
+                            </tree>
+                            <form string="Values">
+                                <field name="name"/>
+                            </form>
+                        </field>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="pos_attribute_action" model="ir.actions.act_window">
+            <field name="name">Attributes</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pos.product.attribute</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <record id="pos_variants_tree_view" model="ir.ui.view">
+            <field name="name">pos.product.attribute.value.tree</field>
+            <field name="model">pos.product.attribute.value</field>
+            <field name="arch" type="xml">
+                <tree string="Variant Values" editable="top">
+                    <field name="sequence" widget="handle"/>
+                    <field name="attribute_id"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="pos_variants_action" model="ir.actions.act_window">
+            <field name="name">Attribute Values</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pos.product.attribute.value</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem id="pos_prod_config_main" name="Products" parent="point_of_sale.menu_point_config_product" sequence="10"/>
+        <menuitem action="pos_attribute_action" id="menu_pos_attribute_action" parent="pos_prod_config_main" sequence="4" />
+        <menuitem action="pos_variants_action" id="menu_pos_variants_action" parent="pos_prod_config_main" sequence="5"/>
+    </data>
+</odoo>

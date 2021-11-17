@@ -1,0 +1,12 @@
+
+.dark-border{
+	border: green solid !important;
+}
+
+.product_qtys{
+	font-size: 13px !important;
+    padding: 1px !important;
+    width: 29px !important;
+    height: 20px !important;
+    min-height: 11px !important;
+}

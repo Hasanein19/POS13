@@ -1,0 +1,7 @@
+<odoo>
+    <template id="assets_backend" name="hr assets" inherit_id="point_of_sale.assets_backend">
+        <xpath expr="//script[@src='/point_of_sale/static/lib/html2canvas.js']" position="replace">
+            <script type="text/javascript" src="/pos_ibrahim_custom/static/lib/html2canvas.js"></script>
+        </xpath>
+    </template>
+</odoo>

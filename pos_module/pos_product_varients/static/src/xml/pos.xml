@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="PosVarientProductWidget">
+        <div class="modal-dialog">
+            <div class="popup" style="height:500px; width:650px;">
+                <p class="title">
+                     Product Variant    
+                </p>
+                <div class="content-container ">
+                    <t t-if="widget.options.product">
+                        <div class="base_product"  t-att-data-product-id="widget.options.product.id" />
+                    </t>
+                    <div style="height: 375px;overflow: scroll;">
+                        <t t-if="widget.options.product_varient_list">
+                            <t t-foreach="widget.options.product_varient_list" t-as="product_varient_list">
+                                <span t-attf-class="product wv_product #{product_varient_list.default_selected ? 'dark-border' : ''}" t-att-data-product-id="product_varient_list.product_ids[0]" t-att-data-product-price="product_varient_list.price">
+                                    <div class="product-img">
+                                        <img t-attf-src='/web/image/product.product/#{product_varient_list.product_ids[0]}/image' />
+                                        <span class="price-tag">
+                                            <t t-esc="widget.format_currency(product_varient_list.price,'Product Price')"/> +
+                                        </span>
+                                    </div>
+                                    <div class="product-name" t-att-data-product-name="product_varient_list.value_ids[1]">
+                                        <t t-esc="product_varient_list.value_ids[1]"/>
+                                    </div>
+                                </span>
+                            </t>
+                        </t>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div class="button add_modifiers">
+                        Add
+                    </div>
+                    <div class="button cancel">
+                        Cancel 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <t t-extend="Orderline">
+        <t t-jquery=".info-list" t-operation='after'>
+            <ul class="info-list">
+                <t t-if="line.selective_product_varient_ids">
+                    <t t-foreach="line.selective_product_varient_ids" t-as="selective_product">
+                        <li class="info" style="margin-left: 22px;"><t t-esc="selective_product.varient_name"/><t t-if="selective_product.price"> at
+                        <t t-esc="widget.format_currency(selective_product.price,'Product Price')" /></t></li>
+                    </t>
+                </t>
+            </ul>
+        </t>
+    </t>
+    <t t-name="OrderlineEditVarientButton">
+        <div class='control-button'>
+            <i class='fa fa-tag' /> Edit Variant
+        </div>
+    </t>
+    <!-- <t t-extend="receipt_design">
+        <t t-jquery="t[t-if='orderline.get_discount() > 0']" t-operation='after'>
+            <t t-if="orderline.selective_product_varient_ids">
+                <t t-foreach="orderline.selective_product_varient_ids" t-as="selective_product">
+                    <li class="info"><t t-esc="selective_product.varient_name"/> at
+                        <t t-esc="widget.format_currency(selective_product.price,'Product Price')" /></li>
+                </t>
+            </t>
+        </t>
+    </t> -->
+</templates>

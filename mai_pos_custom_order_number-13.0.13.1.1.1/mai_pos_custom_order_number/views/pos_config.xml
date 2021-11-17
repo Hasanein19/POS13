@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_config_custom_receipt_no_settings" model="ir.ui.view">
+        <field name="name">pos.config.custom.receipt.number</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='category_reference']/.." position="after">
+                <h2>POS Configuration for Custom Receipt Order Number</h2>
+                <div class="row mt16 o_settings_container" id="custom_receipt_config">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">POS Receipt Prefix</span>
+                            <div class="text-muted">
+                                Add Receipt Prefix for PoS Orders
+                            </div>
+                            <div class="content-group">
+                                <div class="row mt16" title="Receipt Prefix">
+                                    <label string="Prefix" for="seq_receipt_prefix" class="col-lg-3 o_light_label"/>
+                                    <field name="seq_receipt_prefix"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Receipt Number Starts</span>
+                            <div class="text-muted">
+                                Add number from where Receipt Number Starts
+                            </div>
+                            <div class="content-group">
+                                <div class="row mt16" title="Receipt Number">
+                                    <label string="Number" for="seq_receipt_number" class="col-lg-3 o_light_label"/>
+                                    <field name="seq_receipt_number"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Add Padding with Zeros</span>
+                            <div class="text-muted">
+                                Add zeros before the sequnce number in receipt number
+                            </div>
+                            <div class="content-group">
+                                <div class="row mt16" title="Padding with Zeros">
+                                    <label string="Padding" for="seq_receipt_number_padding" class="col-lg-3 o_light_label"/>
+                                    <field name="seq_receipt_number_padding"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
